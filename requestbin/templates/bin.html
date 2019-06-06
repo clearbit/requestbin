@@ -20,7 +20,7 @@
           <div class="row-fluid">
             <div class="span4">
               {{base_url}}<br>
-              <span class="method">{{request.method}}</span> 
+              <span class="method">{{request.method}}</span>
               <span class="absolute-path">{{request.path}}</span><span class="querystring">{{request.query_string|to_qs}}</span>
             </div>
             <div class="span6 content">
@@ -142,9 +142,6 @@ public class RequestBinTutorial {
         <p>This {% if bin.private %}<strong>private</strong>{% endif %}
         bin will keep the last 20 requests made to it and remain available for 48 hours after it was created.
         However, data might be cleared at any time, so <strong>treat bins as highly ephemeral</strong>.</p>
-
-        <h4>Need more?</h4>
-        <p><a href="https://www.runscope.com/?utm_source=partner&amp;utm_medium=link&amp;utm_campaign=requestbin">Sign up for a free Runscope account</a>. Runscope request captures give you live updates, permanent URLs, file handling and much more.</p>
       </div>
 {% endblock %}
 
@@ -168,7 +165,7 @@ public class RequestBinTutorial {
             {% else %}
               <p class="keypair"><strong>{{k}}:</strong> {{v}}</p>
             {% endif %}
-          {% endfor %} 
+          {% endfor %}
         {% endif %}
       </div>
       <div class="span8">
@@ -183,8 +180,12 @@ public class RequestBinTutorial {
 
     <h5>RAW BODY</h5>
     <div class="request-body" data-id="{{ request.id }}">
-<pre class="body prettyprint">{%if request.raw%}{{request.raw}}{%else%}<em>None</em>{%endif%}</pre>
-
+      <pre id='json-{{request.id}}' class="body prettyprint json">{%if request.raw%}{{request.raw}}{%else%}<em>None</em>{%endif%}</pre>
+    </div>
   </div>
-</div>
+  <script>
+      var elements = document.getElementId("json-{{request.id}}");
+      var obj = JSON.parse(element.innerText);
+      element.innerHTML = JSON.stringify(obj, undefined, 2);
+  </script>
 {% endmacro %}
