@@ -38,11 +38,6 @@
 
         <div id="detail-{{request.id}}" class="message-detail">
           {{ message_detail(request) }}
-          <script type="text/javascript">
-              var elements = document.getElementById("json-{{request.id}}");
-              var obj = JSON.parse(element.innerText);
-              element.innerHTML = JSON.stringify(obj, undefined, 2);
-          </script>
         </div>
       </div>
     {% else %}
@@ -188,4 +183,9 @@ public class RequestBinTutorial {
       <pre id='json-{{request.id}}' class="body prettyprint json">{%if request.raw%}{{request.raw}}{%else%}<em>None</em>{%endif%}</pre>
     </div>
   </div>
+  <script type="text/javascript">
+      var element = document.getElementById("json-{{request.id}}");
+      var obj = JSON.parse(element.innerText);
+      element.innerHTML = JSON.stringify(obj, undefined, 2);
+  </script>
 {% endmacro %}
