@@ -183,9 +183,4 @@ public class RequestBinTutorial {
       <pre id='json-{{request.id}}' class="body prettyprint json">{%if request.raw%}{{request.raw}}{%else%}<em>None</em>{%endif%}</pre>
     </div>
   </div>
-  <script>
-      var elements = document.getElementId("json-{{request.id}}");
-      var obj = JSON.parse(element.innerText);
-      element.innerHTML = JSON.stringify(obj, undefined, 2);
-  </script>
 {% endmacro %}
